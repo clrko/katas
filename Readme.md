@@ -4,12 +4,10 @@ Some kata in Javascript
 
 - [fizzbuzz](./fizzbuzz.js)
 
-
 ## Requirements
 
 - Node
 - yarn
-
 
 ## commands
 
