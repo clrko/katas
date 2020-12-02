@@ -3,6 +3,7 @@
 Some kata in Javascript
 
 - [fizzbuzz](./fizzbuzz.js)
+- [bowling](./bowling.js)
 
 ## Requirements
 
