@@ -111,7 +111,107 @@ describe('bowling', () => {
       const score = bowlingScore(rolls);
 
       // then
-      expect(score).toEqual(45);
+      expect(score).toEqual(47);
+    });
+  });
+  describe('When spare on first two rolls and two normal one', () => {
+    it('should double of the third roll', () => {
+      // given
+      const rolls = [4, 6, 2, 3];
+
+      // when
+      const score = bowlingScore(rolls);
+
+      // then
+      expect(score).toEqual(17);
+    });
+  });
+  describe('When spare on first two rolls and spare on the second and third rolls', () => {
+    it('should only double of the third roll', () => {
+      // given
+      const rolls = [4, 6, 4, 3];
+
+      // when
+      const score = bowlingScore(rolls);
+
+      // then
+      expect(score).toEqual(21);
+    });
+  });
+  describe('When nothing on first roll, two next rolls sum up to 10', () => {
+    it('should not count the spare', () => {
+      // given
+      const rolls = [2, 6, 4, 3];
+
+      // when
+      const score = bowlingScore(rolls);
+
+      // then
+      expect(score).toEqual(15);
+    });
+  });
+  describe('When strike on first roll, two next rolls sum up to 10', () => {
+    it('should count the spare', () => {
+      // given
+      const rolls = [10, 6, 4, 3];
+
+      // when
+      const score = bowlingScore(rolls);
+
+      // then
+      expect(score).toEqual(36);
+    });
+  });
+
+  describe('When there is a spare in the last frame', () => {
+    it('should not double the last roll', () => {
+      // given
+      const rolls = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 8, 6];
+
+      // when
+      const score = bowlingScore(rolls);
+
+      // then
+      expect(score).toEqual(34);
+    });
+  });
+
+  describe('When there is a strike in the last frame', () => {
+    it('should not double the last two rolls', () => {
+      // given
+      const rolls = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 6, 3];
+
+      // when
+      const score = bowlingScore(rolls);
+
+      // then
+      expect(score).toEqual(37);
+    });
+  });
+
+  describe('When there are three strikes and one normal roll', () => {
+    it('should double the scond roll, quadruple the 3 third roll', () => {
+      // given
+      const rolls = [10, 10, 10, 1];
+
+      // when
+      const score = bowlingScore(rolls);
+
+      // then
+      expect(score).toEqual(63);
+    });
+  });
+
+  describe('When there are ONLY strikes in game', () => {
+    it('reach max score for Yuri', () => {
+      // given
+      const rolls = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+
+      // when
+      const score = bowlingScore(rolls);
+
+      // then
+      expect(score).toEqual(300);
     });
   });
 });
